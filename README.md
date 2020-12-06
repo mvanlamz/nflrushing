@@ -58,7 +58,7 @@ If you have any questions regarding requirements, do not hesitate to email your 
 
 Install "asdf" to manage system dependencies
 
-  * Follow instructions here `https://asdf-vm.com/#/core-manage-asdf?id=install`
+  * Follow instructions here: [`https://asdf-vm.com`](https://asdf-vm.com/#/core-manage-asdf?id=install)
 
 Use "asdf" to install system dependencies
 
@@ -83,5 +83,4 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 ### Contact Information
 
   * Mike van Lammeren
-  * https://www.linkedin.com/in/mvanlamz/
-
+  * [`Mike's LinkedIn Profile`](https://www.linkedin.com/in/mvanlamz/)
