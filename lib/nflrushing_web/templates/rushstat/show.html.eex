@@ -1,0 +1,88 @@
+<h1>Show Rushstat</h1>
+
+<ul>
+
+  <li>
+    <strong>Player name:</strong>
+    <%= @rushstat.player_name %>
+  </li>
+
+  <li>
+    <strong>Team name:</strong>
+    <%= @rushstat.team_name %>
+  </li>
+
+  <li>
+    <strong>Player position:</strong>
+    <%= @rushstat.player_position %>
+  </li>
+
+  <li>
+    <strong>Attempts count:</strong>
+    <%= @rushstat.attempts_count %>
+  </li>
+
+  <li>
+    <strong>Attempts per game avg:</strong>
+    <%= @rushstat.attempts_per_game_avg %>
+  </li>
+
+  <li>
+    <strong>Yards total:</strong>
+    <%= @rushstat.yards_total %>
+  </li>
+
+  <li>
+    <strong>Yards avg per attempt:</strong>
+    <%= @rushstat.yards_avg_per_attempt %>
+  </li>
+
+  <li>
+    <strong>Yards per game:</strong>
+    <%= @rushstat.yards_per_game %>
+  </li>
+
+  <li>
+    <strong>Touchdowns count:</strong>
+    <%= @rushstat.touchdowns_count %>
+  </li>
+
+  <li>
+    <strong>Yards max:</strong>
+    <%= @rushstat.yards_max %>
+  </li>
+
+  <li>
+    <strong>Yards max touchdown:</strong>
+    <%= @rushstat.yards_max_touchdown %>
+  </li>
+
+  <li>
+    <strong>First down count:</strong>
+    <%= @rushstat.first_down_count %>
+  </li>
+
+  <li>
+    <strong>First down percent:</strong>
+    <%= @rushstat.first_down_percent %>
+  </li>
+
+  <li>
+    <strong>Twenty yards count:</strong>
+    <%= @rushstat.twenty_yards_count %>
+  </li>
+
+  <li>
+    <strong>Forty yards count:</strong>
+    <%= @rushstat.forty_yards_count %>
+  </li>
+
+  <li>
+    <strong>Fumble count:</strong>
+    <%= @rushstat.fumble_count %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.rushstat_path(@conn, :edit, @rushstat) %></span>
+<span><%= link "Back", to: Routes.rushstat_path(@conn, :index) %></span>

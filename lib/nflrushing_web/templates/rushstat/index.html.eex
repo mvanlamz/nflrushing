@@ -1,0 +1,56 @@
+<h1>Listing Rushstats</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player name</th>
+      <th>Team name</th>
+      <th>Player position</th>
+      <th>Attempts count</th>
+      <th>Attempts per game avg</th>
+      <th>Yards total</th>
+      <th>Yards avg per attempt</th>
+      <th>Yards per game</th>
+      <th>Touchdowns count</th>
+      <th>Yards max</th>
+      <th>Yards max touchdown</th>
+      <th>First down count</th>
+      <th>First down percent</th>
+      <th>Twenty yards count</th>
+      <th>Forty yards count</th>
+      <th>Fumble count</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for rushstat <- @rushstats do %>
+    <tr>
+      <td><%= rushstat.player_name %></td>
+      <td><%= rushstat.team_name %></td>
+      <td><%= rushstat.player_position %></td>
+      <td><%= rushstat.attempts_count %></td>
+      <td><%= rushstat.attempts_per_game_avg %></td>
+      <td><%= rushstat.yards_total %></td>
+      <td><%= rushstat.yards_avg_per_attempt %></td>
+      <td><%= rushstat.yards_per_game %></td>
+      <td><%= rushstat.touchdowns_count %></td>
+      <td><%= rushstat.yards_max %></td>
+      <td><%= rushstat.yards_max_touchdown %></td>
+      <td><%= rushstat.first_down_count %></td>
+      <td><%= rushstat.first_down_percent %></td>
+      <td><%= rushstat.twenty_yards_count %></td>
+      <td><%= rushstat.forty_yards_count %></td>
+      <td><%= rushstat.fumble_count %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.rushstat_path(@conn, :show, rushstat) %></span>
+        <span><%= link "Edit", to: Routes.rushstat_path(@conn, :edit, rushstat) %></span>
+        <span><%= link "Delete", to: Routes.rushstat_path(@conn, :delete, rushstat), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Rushstat", to: Routes.rushstat_path(@conn, :new) %></span>

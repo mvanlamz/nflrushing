@@ -1,0 +1,75 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= label f, :player_name %>
+  <%= text_input f, :player_name %>
+  <%= error_tag f, :player_name %>
+
+  <%= label f, :team_name %>
+  <%= text_input f, :team_name %>
+  <%= error_tag f, :team_name %>
+
+  <%= label f, :player_position %>
+  <%= text_input f, :player_position %>
+  <%= error_tag f, :player_position %>
+
+  <%= label f, :attempts_count %>
+  <%= number_input f, :attempts_count %>
+  <%= error_tag f, :attempts_count %>
+
+  <%= label f, :attempts_per_game_avg %>
+  <%= number_input f, :attempts_per_game_avg, step: "any" %>
+  <%= error_tag f, :attempts_per_game_avg %>
+
+  <%= label f, :yards_total %>
+  <%= number_input f, :yards_total %>
+  <%= error_tag f, :yards_total %>
+
+  <%= label f, :yards_avg_per_attempt %>
+  <%= number_input f, :yards_avg_per_attempt, step: "any" %>
+  <%= error_tag f, :yards_avg_per_attempt %>
+
+  <%= label f, :yards_per_game %>
+  <%= number_input f, :yards_per_game %>
+  <%= error_tag f, :yards_per_game %>
+
+  <%= label f, :touchdowns_count %>
+  <%= number_input f, :touchdowns_count %>
+  <%= error_tag f, :touchdowns_count %>
+
+  <%= label f, :yards_max %>
+  <%= number_input f, :yards_max %>
+  <%= error_tag f, :yards_max %>
+
+  <%= label f, :yards_max_touchdown %>
+  <%= checkbox f, :yards_max_touchdown %>
+  <%= error_tag f, :yards_max_touchdown %>
+
+  <%= label f, :first_down_count %>
+  <%= number_input f, :first_down_count %>
+  <%= error_tag f, :first_down_count %>
+
+  <%= label f, :first_down_percent %>
+  <%= number_input f, :first_down_percent, step: "any" %>
+  <%= error_tag f, :first_down_percent %>
+
+  <%= label f, :twenty_yards_count %>
+  <%= number_input f, :twenty_yards_count %>
+  <%= error_tag f, :twenty_yards_count %>
+
+  <%= label f, :forty_yards_count %>
+  <%= number_input f, :forty_yards_count %>
+  <%= error_tag f, :forty_yards_count %>
+
+  <%= label f, :fumble_count %>
+  <%= number_input f, :fumble_count %>
+  <%= error_tag f, :fumble_count %>
+
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>

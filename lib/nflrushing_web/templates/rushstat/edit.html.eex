@@ -1,0 +1,5 @@
+<h1>Edit Rushstat</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.rushstat_path(@conn, :update, @rushstat)) %>
+
+<span><%= link "Back", to: Routes.rushstat_path(@conn, :index) %></span>
