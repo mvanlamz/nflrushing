@@ -2,6 +2,7 @@
 
 <%= form_for @conn, Routes.rushstat_path(@conn, :index), [method: :get], fn f -> %>
   <%= text_input f, :player_name %>
+  <%= select(f, :sort_by, [{"Sort By", ""}, {"Total Rushing Yards", :yards_total}, {"Longest Rush", :yards_max}, {"Total Rushing Touchdowns", :touchdowns_count}]) %>
 
   <%= submit "Search" %>
   &nbsp;
