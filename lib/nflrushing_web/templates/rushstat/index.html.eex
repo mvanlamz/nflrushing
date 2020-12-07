@@ -1,7 +1,8 @@
 <h1>Listing Rushstats</h1>
 
 <%= form_for @conn, Routes.rushstat_path(@conn, :index), [method: :get], fn f -> %>
-  <%= text_input f, :player_name %>
+  <%= label f, :progress_status, long_title(:player_name), for: :player_name %>
+  <%= text_input f, :player_name, maxlength: 50 %>
   <%= select(f, :sort_by, [{"Sort By", ""}, {"Total Rushing Yards", :yards_total}, {"Longest Rush", :yards_max}, {"Total Rushing Touchdowns", :touchdowns_count}]) %>
 
   <%= submit "Search" %>
@@ -9,26 +10,24 @@
   <%= button("Show All", to: Routes.rushstat_path(@conn, :index), method: :get) %>
 <% end %>
 
-
 <table>
   <thead>
     <tr>
-      <th>Player name</th>
-      <th>Team name</th>
-      <th>Player position</th>
-      <th>Attempts count</th>
-      <th>Attempts per game avg</th>
-      <th>Yards total</th>
-      <th>Yards avg per attempt</th>
-      <th>Yards per game</th>
-      <th>Touchdowns count</th>
-      <th>Yards max</th>
-      <th>Yards max touchdown</th>
-      <th>First down count</th>
-      <th>First down percent</th>
-      <th>Twenty yards count</th>
-      <th>Forty yards count</th>
-      <th>Fumble count</th>
+      <th title="<%= long_title(:player_name) %>"><%= short_title(:player_name) %></th>
+      <th title="<%= long_title(:team_name) %>"><%= short_title(:team_name) %></th>
+      <th title="<%= long_title(:player_position) %>"><%= short_title(:player_position) %></th>
+      <th title="<%= long_title(:attempts_count) %>"><%= short_title(:attempts_count) %></th>
+      <th title="<%= long_title(:attempts_per_game_avg) %>"><%= short_title(:attempts_per_game_avg) %></th>
+      <th title="<%= long_title(:yards_total) %>"><%= short_title(:yards_total) %></th>
+      <th title="<%= long_title(:yards_avg_per_attempt) %>"><%= short_title(:yards_avg_per_attempt) %></th>
+      <th title="<%= long_title(:yards_per_game) %>"><%= short_title(:yards_per_game) %></th>
+      <th title="<%= long_title(:touchdowns_count) %>"><%= short_title(:touchdowns_count) %></th>
+      <th title="<%= long_title(:yards_max) %>"><%= short_title(:yards_max) %></th>
+      <th title="<%= long_title(:first_down_count) %>"><%= short_title(:first_down_count) %></th>
+      <th title="<%= long_title(:first_down_percent) %>"><%= short_title(:first_down_percent) %></th>
+      <th title="<%= long_title(:twenty_yards_count) %>"><%= short_title(:twenty_yards_count) %></th>
+      <th title="<%= long_title(:forty_yards_count) %>"><%= short_title(:forty_yards_count) %></th>
+      <th title="<%= long_title(:fumble_count) %>"><%= short_title(:fumble_count) %></th>
 
       <th></th>
     </tr>
@@ -45,8 +44,7 @@
       <td><%= rushstat.yards_avg_per_attempt %></td>
       <td><%= rushstat.yards_per_game %></td>
       <td><%= rushstat.touchdowns_count %></td>
-      <td><%= rushstat.yards_max %></td>
-      <td><%= rushstat.yards_max_touchdown %></td>
+      <td><%= rushstat.yards_max %><%= if rushstat.yards_max_touchdown do "T" end %></td>
       <td><%= rushstat.first_down_count %></td>
       <td><%= rushstat.first_down_percent %></td>
       <td><%= rushstat.twenty_yards_count %></td>

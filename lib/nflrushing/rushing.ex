@@ -19,8 +19,6 @@ defmodule Nflrushing.Rushing do
 
   """
   def list_rushstats(params) do
-    # IO.inspect(params)
-    # player_name = params{:filter_by}
     Rushstat
     # |> where_player_name_like(params["player_name"])  TODO
     |> where_player_name_exact(params["player_name"])
@@ -41,23 +39,24 @@ defmodule Nflrushing.Rushing do
     Repo.all(Rushstat)
   end
 
-  defp where_player_name_exact(query, _player_name = nil), do: query
-  defp where_player_name_exact(query, _player_name = ""), do: query
+  defp where_player_name_exact(query, player_name) when player_name in [nil, ""], do: query
 
   defp where_player_name_exact(query, player_name) do
-   query
-  |> where(player_name: ^player_name)
+    query
+    |> where(player_name: ^player_name)
   end
 
-  defp order_by_selected(query, _field = nil) do
-   query
-    |> order_by(asc: :id)
-  end
+  defp order_by_selected(query, field)
+       when field in ["yards_total", "yards_max", "touchdowns_count"] do
+    field = String.to_atom(field)
 
-  defp order_by_selected(query, field) do
-    field = String.to_atom field
-   query
+    query
     |> order_by(desc: ^field)
+  end
+
+  defp order_by_selected(query, _field) do
+    query
+    |> order_by(asc: :id)
   end
 
   @doc """

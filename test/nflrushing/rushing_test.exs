@@ -83,7 +83,18 @@ defmodule Nflrushing.RushingTest do
       assert Rushing.list_rushstats() |> Enum.sort() ==
                [rushstat_al_1, rushstat_al_2, rushstat_bill] |> Enum.sort()
 
-      assert Rushing.list_rushstats(%{"player_name" => "Alan"}) |> Enum.sort() == [rushstat_al_1, rushstat_al_2] |> Enum.sort()
+      assert Rushing.list_rushstats(%{"player_name" => "Alan"}) |> Enum.sort() ==
+               [rushstat_al_1, rushstat_al_2] |> Enum.sort()
+    end
+
+    test "list_rushstats/1 returns sorted rushstats" do
+      rushstat_yt_8 = rushstat_fixture(yards_total: 8)
+      rushstat_yt_9 = rushstat_fixture(yards_total: 9)
+
+      assert Rushing.list_rushstats() == [rushstat_yt_8, rushstat_yt_9]
+
+      assert Rushing.list_rushstats(%{"sort_by" => "yards_total"}) ==
+               [rushstat_yt_9, rushstat_yt_8]
     end
 
     test "get_rushstat!/1 returns the rushstat with given id" do

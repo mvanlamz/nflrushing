@@ -53,8 +53,9 @@ We will evaluate you on your ability to solve the problem defined in the require
 ### Help
 If you have any questions regarding requirements, do not hesitate to email your contact at theScore for clarification.
 
+### Installation and running this solution
 
-## NFL Rushing by Mike van Lammeren
+#### NFL Rushing by Mike van Lammeren
 
 Install "asdf" to manage system dependencies
 
@@ -75,12 +76,13 @@ To start your Phoenix server:
 
 Additional steps:
 
+  * Run the unit test suite with `mix test`
   * Import rushing.json to your database with `mix load_json`
   * (Optional) Start app to automatically run unit tests with `mix test.watch`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-### Contact Information
+#### Contact Information
 
   * Mike van Lammeren
   * [`Mike's LinkedIn Profile`](https://www.linkedin.com/in/mvanlamz/)
