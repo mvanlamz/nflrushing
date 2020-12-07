@@ -3,71 +3,6 @@ defmodule Nflrushing.RushingTest do
 
   alias Nflrushing.Rushing
 
-  describe "players" do
-    alias Nflrushing.Rushing.Player
-
-    @valid_attrs %{
-      attempts_count: 42,
-      attempts_per_game_avg: 120.5,
-      name: "some name",
-      player_position: "some player_position",
-      rush_first_down_count: 42,
-      rush_first_down_percent: 120.5,
-      rush_forty_yards_count: 42,
-      rush_fumble_count: 42,
-      rush_touchdowns_count: 42,
-      rush_twenty_yards_count: 42,
-      rush_yards_avg: 120.5,
-      rush_yards_max: 42,
-      rush_yards_max_touchdown: true,
-      rush_yards_per_game: 42,
-      rush_yards_total: 42,
-      team_nickname: "some team_nickname"
-    }
-    @update_attrs %{
-      attempts_count: 43,
-      attempts_per_game_avg: 456.7,
-      name: "some updated name",
-      player_position: "some updated player_position",
-      rush_first_down_count: 43,
-      rush_first_down_percent: 456.7,
-      rush_forty_yards_count: 43,
-      rush_fumble_count: 43,
-      rush_touchdowns_count: 43,
-      rush_twenty_yards_count: 43,
-      rush_yards_avg: 456.7,
-      rush_yards_max: 43,
-      rush_yards_max_touchdown: false,
-      rush_yards_per_game: 43,
-      rush_yards_total: 43,
-      team_nickname: "some updated team_nickname"
-    }
-    @invalid_attrs %{
-      attempts_count: nil,
-      attempts_per_game_avg: nil,
-      name: nil,
-      player_position: nil,
-      rush_first_down_count: nil,
-      rush_first_down_percent: nil,
-      rush_forty_yards_count: nil,
-      rush_fumble_count: nil,
-      rush_touchdowns_count: nil,
-      rush_twenty_yards_count: nil,
-      rush_yards_avg: nil,
-      rush_yards_max: nil,
-      rush_yards_max_touchdown: nil,
-      rush_yards_per_game: nil,
-      rush_yards_total: nil,
-      team_nickname: nil
-    }
-
-    test "is_touchdown?/1 returns true or false" do
-      assert true == Rushing.is_touchdown?("75T")
-      assert false == Rushing.is_touchdown?("23")
-      assert false == Rushing.is_touchdown?("")
-    end
-  end
-
   describe "rushstats" do
     alias Nflrushing.Rushing.Rushstat
 
@@ -140,6 +75,17 @@ defmodule Nflrushing.RushingTest do
       assert Rushing.list_rushstats() == [rushstat]
     end
 
+    test "list_rushstats/1 returns filtered rushstats" do
+      rushstat_al_1 = rushstat_fixture(player_name: "Alan", team_name: "BUF")
+      rushstat_al_2 = rushstat_fixture(player_name: "Alan", team_name: "DET")
+      rushstat_bill = rushstat_fixture(player_name: "Bill")
+
+      assert Rushing.list_rushstats() |> Enum.sort() ==
+               [rushstat_al_1, rushstat_al_2, rushstat_bill] |> Enum.sort()
+
+      assert Rushing.list_rushstats(%{"player_name" => "Alan"}) |> Enum.sort() == [rushstat_al_1, rushstat_al_2] |> Enum.sort()
+    end
+
     test "get_rushstat!/1 returns the rushstat with given id" do
       rushstat = rushstat_fixture()
       assert Rushing.get_rushstat!(rushstat.id) == rushstat
@@ -205,6 +151,12 @@ defmodule Nflrushing.RushingTest do
     test "change_rushstat/1 returns a rushstat changeset" do
       rushstat = rushstat_fixture()
       assert %Ecto.Changeset{} = Rushing.change_rushstat(rushstat)
+    end
+
+    test "is_touchdown?/1 returns true or false" do
+      assert true == Rushing.is_touchdown?("75T")
+      assert false == Rushing.is_touchdown?("23")
+      assert false == Rushing.is_touchdown?("")
     end
   end
 end

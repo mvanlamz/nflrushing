@@ -10,6 +10,32 @@ defmodule Nflrushing.Rushing do
   alias Nflrushing.Rushing.Rushstat
 
   @doc """
+  Returns the list of filtered and sorted rushstats.
+
+  ## Examples
+
+      iex> list_rushstats()
+      [%Rushstat{}, ...]
+
+  """
+  def list_rushstats(params) do
+    # IO.inspect(params)
+    # player_name = params{:filter_by}
+    Rushstat
+    # |> where_player_name_like(params["player_name"])
+    |> where_player_name_exact(params["player_name"])
+    |> order_by(asc: :id)
+    |> Repo.all()
+  end
+
+  defp where_player_name_exact(query, _player_name = nil), do: query
+
+  defp where_player_name_exact(query, player_name) do
+   query
+  |> where(player_name: ^player_name)
+  end
+
+  @doc """
   Returns the list of rushstats.
 
   ## Examples

@@ -8,7 +8,7 @@
     <h2>Homework Application</h2>
     <ul>
       <li>
-        <a href="rushstats">Rushing Stats</a>
+        <%= link("Rushing Stats", to: Routes.rushstat_path(@conn, :index)) %>
       </li>
     </ul>
   </article>
@@ -16,7 +16,7 @@
     <h2>Resources</h2>
     <ul>
       <li>
-        <a href="https://www.linkedin.com/in/mvanlamz/">Mike's LinkedIn Profile'</a>
+        <a href="https://www.linkedin.com/in/mvanlamz/">Mike's LinkedIn Profile</a>
       </li>
       <li>
         <a href="https://github.com/mvanlamz/nflrushing">This project on GitHub</a>

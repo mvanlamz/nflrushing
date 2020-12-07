@@ -4,8 +4,8 @@ defmodule NflrushingWeb.RushstatController do
   alias Nflrushing.Rushing
   alias Nflrushing.Rushing.Rushstat
 
-  def index(conn, _params) do
-    rushstats = Rushing.list_rushstats()
+  def index(conn, params) do
+    rushstats = Rushing.list_rushstats(params)
     render(conn, "index.html", rushstats: rushstats)
   end
 

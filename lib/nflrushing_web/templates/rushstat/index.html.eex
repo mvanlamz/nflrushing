@@ -1,5 +1,14 @@
 <h1>Listing Rushstats</h1>
 
+<%= form_for @conn, Routes.rushstat_path(@conn, :index), [method: :get], fn f -> %>
+  <%= text_input f, :player_name %>
+
+  <%= submit "Search" %>
+  &nbsp;
+  <%= button("Show All", to: Routes.rushstat_path(@conn, :index), method: :get) %>
+<% end %>
+
+
 <table>
   <thead>
     <tr>
