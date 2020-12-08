@@ -4,9 +4,23 @@ defmodule NflrushingWeb.RushstatController do
   alias Nflrushing.Rushing
   alias Nflrushing.Rushing.Rushstat
 
+  NimbleCSV.define(MyParser, separator: "\t", escape: "\"")
+
+  def index(conn, params = %{"submit_button" => "export_csv_button"}) do
+    # Export CSV File
+    conn
+    |> put_resp_content_type("text/csv")
+    |> put_resp_header("content-disposition", "attachment; filename=\"#{csv_filename()}\"")
+    |> send_resp(200, IO.iodata_to_binary(MyParser.dump_to_iodata(Rushing.csv_rushstats(params))))
+  end
+
   def index(conn, params) do
     rushstats = Rushing.list_rushstats(params)
     render(conn, "index.html", rushstats: rushstats)
+  end
+
+  defp csv_filename do
+    "nfl_rushing_stats.csv"
   end
 
   def new(conn, _params) do

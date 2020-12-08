@@ -45,6 +45,7 @@ defmodule Nflrushing.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:nimble_csv, "~> 1.1.0"},
       {:mix_test_watch, "~> 1.0.2", only: :dev, runtime: false}
     ]
   end

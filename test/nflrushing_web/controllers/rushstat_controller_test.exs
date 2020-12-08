@@ -66,7 +66,15 @@ defmodule NflrushingWeb.RushstatControllerTest do
   describe "index" do
     test "lists all rushstats", %{conn: conn} do
       conn = get(conn, Routes.rushstat_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Rushstats"
+      # IO.inspect [:mvl_was_here, html_response(conn, 200)]
+      assert html_response(conn, 200) =~ "NFL Rushing Statistics"
+    end
+
+    test "CSV containing all rushstats", %{conn: conn} do
+      conn = get(conn, Routes.rushstat_path(conn, :index, submit_button: "export_csv_button"))
+      assert response_content_type(conn, :csv) =~ "text/csv; charset=utf-8"
+      assert response(conn, 200) =~ "player_name\tteam_name\t"
+      assert response(conn, 200) =~ "forty_yards_count\tfumble_count\n"
     end
   end
 

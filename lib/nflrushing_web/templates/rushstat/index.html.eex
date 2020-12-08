@@ -1,12 +1,13 @@
-<h1>Listing Rushstats</h1>
+<h1>Search, Sort and Export NFL Rushing Statistics</h1>
 
 <%= form_for @conn, Routes.rushstat_path(@conn, :index), [method: :get], fn f -> %>
-  <%= label f, :progress_status, long_title(:player_name), for: :player_name %>
+  <%= label f, long_title(:player_name), for: :player_name %>
   <%= text_input f, :player_name, maxlength: 50 %>
-  <%= select(f, :sort_by, [{"Sort By", ""}, {"Total Rushing Yards", :yards_total}, {"Longest Rush", :yards_max}, {"Total Rushing Touchdowns", :touchdowns_count}]) %>
+  <%= label f, gettext("Sort By"), for: :sort_by %>
+  <%= select(f, :sort_by, [{"Please choose...", ""}, {"Total Rushing Yards", :yards_total}, {"Longest Rush", :yards_max}, {"Total Rushing Touchdowns", :touchdowns_count}]) %>
 
-  <%= submit "Search" %>
-  &nbsp;
+  <%= submit "Search", name: "submit_button", value: "search_button" %>&nbsp;
+  <%= submit "Download CSV", name: "submit_button", value: "export_csv_button" %>&nbsp;
   <%= button("Show All", to: Routes.rushstat_path(@conn, :index), method: :get) %>
 <% end %>
 

@@ -5,8 +5,6 @@ defmodule Nflrushing.Rushing do
 
   import Ecto.Query, warn: false
   alias Nflrushing.Repo
-
-  alias Nflrushing.Rushing.Player
   alias Nflrushing.Rushing.Rushstat
 
   @doc """
@@ -57,6 +55,51 @@ defmodule Nflrushing.Rushing do
   defp order_by_selected(query, _field) do
     query
     |> order_by(asc: :id)
+  end
+
+  def csv_rushstats(params) do
+    [
+      [
+        :player_name,
+        :team_name,
+        :player_position,
+        :attempts_count,
+        :attempts_per_game_avg,
+        :yards_total,
+        :yards_avg_per_attempt,
+        :yards_per_game,
+        :touchdowns_count,
+        :yards_max,
+        :first_down_count,
+        :first_down_percent,
+        :twenty_yards_count,
+        :forty_yards_count,
+        :fumble_count
+      ]
+    ] ++
+      for r <- list_rushstats(params) do
+        [
+          r.player_name,
+          r.team_name,
+          r.player_position,
+          r.attempts_count,
+          r.attempts_per_game_avg,
+          r.yards_total,
+          r.yards_avg_per_attempt,
+          r.yards_per_game,
+          r.touchdowns_count,
+          "#{r.yards_max}#{
+            if r.yards_max_touchdown do
+              "T"
+            end
+          }",
+          r.first_down_count,
+          r.first_down_percent,
+          r.twenty_yards_count,
+          r.forty_yards_count,
+          r.fumble_count
+        ]
+      end
   end
 
   @doc """
