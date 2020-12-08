@@ -6,7 +6,6 @@ defmodule Mix.Tasks.LoadJson do
   @shortdoc "Populates the database with the given JSON file."
   def run(_) do
     Mix.Task.run("app.start")
-    # TODO handle file and database errors
     {:ok, body} = File.read("../nflrushing/rushing.json")
     {:ok, json} = Jason.decode(body)
 

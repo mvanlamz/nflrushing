@@ -42,20 +42,4 @@ defmodule NflrushingWeb.RushstatView do
       yards_total: gettext("Yds")
     }[field_name]
   end
-
-  # * `Player` (Player's name)
-  # * `Team` (Player's team abbreviation)
-  # * `Pos` (Player's postion)
-  # * `Att/G` (Rushing Attempts Per Game Average)
-  # * `Att` (Rushing Attempts)
-  # * `Yds` (Total Rushing Yards)
-  # * `Avg` (Rushing Average Yards Per Attempt)
-  # * `Yds/G` (Rushing Yards Per Game)
-  # * `TD` (Total Rushing Touchdowns)
-  # * `Lng` (Longest Rush -- a `T` represents a touchdown occurred)
-  # * `1st` (Rushing First Downs)
-  # * `1st%` (Rushing First Down Percentage)
-  # * `20+` (Rushing 20+ Yards Each)
-  # * `40+` (Rushing 40+ Yards Each)
-  # * `FUM` (Rushing Fumbles)
 end

@@ -195,7 +195,6 @@ defmodule Nflrushing.Rushing do
 
   """
   def is_touchdown?(given) do
-    # TODO touchdown if Lng field from JSON file ends in a "T"
     String.match?("#{given}", ~r/[0-9]+T/)
   end
 end

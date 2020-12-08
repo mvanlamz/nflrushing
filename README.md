@@ -80,7 +80,26 @@ Additional steps:
   * Import rushing.json to your database with `mix load_json`
   * (Optional) Start app to automatically run unit tests with `mix test.watch`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser!
+
+#### Notes from Mike van Lammeren
+
+Although I have over three years of full-time Ruby development experience, and only a few months of Elixir experience, I chose to do this project with Phoenix. Ruby is awesome, of course, but Elixir is almost as fun for developers, and runs so much faster than Ruby, that to me, it is the obvious choice. This little sample application, running on my anemic old MacBook Air, can return an HTML page with hundreds of records in 25 ms, and a CSV with the same information in 10 ms. Amazing!
+
+When I set out to complete an assignment like this, the first thing I do is meet the absolute minimum requirements. This is key to agile software development. If circumstances reduce the time available to developers, or make a team switch tasks, then at least the minimum requirements will be met. For example, this solution only searches player's full names. It would be better to use the PostgreSQL `ilike` query to search for part of a name, but given time constraints, it is preferable to have a simple feature that works over a complex feature that is unfinished. I typically work following TDD, which means that whenever I need to stop, my unit test suite is already complete. Finally, if there is time, I can go back and clean up the code to make it more beautiful, without worrying about breaking anything, because the code is fully unit-tested. Re-factoring is fast and worry free.
+
+Design Decisions
+  * I wrote a quick `mix load_json` task to import the rushing.json file. If this was going to be used again, then I would make it more robust, with error-checking, etc.
+  * I decided to split the `Lng` (Longest Rush) field into two fields. In the JSON input file, a trailing `T` is a sentinel value, indicating a touchdown. I split it into an Integer and Boolean field instead of storing it as a string in one, single field, which prevents the need for ugly, slow SQL queries down the road.
+  * My unfamiliarity with NFL rushing stats led me to give the fields longer names than an avid sports fan would need. I included long descriptions in header tooltips as well. Developers and users that are new to this sort of thing might appreciate those things.
+  * I left the CRUD boilerplate in place, just in case testers want to modify the data as part of their evaluation. Of course, the real users shouldn't have that functionality.
+
+TODO
+  * need to search for partial player names with a SQL "like" query
+  * the CSV output right now can dump over 300 records in 10 ms, but it would use less memory, and support many times the number of records, if it was chunked and streamed
+  * add a virtual field in the `rushstats` schema to transparently handle the `yards_max` and `yards_max_touchdown` values
+  * replace the Search button with an auto-submit on form change
+  * sort by any field, both ascending and descending, by clicking the field title
 
 #### Contact Information
 
